@@ -1,6 +1,4 @@
 
-SetWorkingDir, %A_Temp%\Reaper\
-
 
 ; find the current main version on github
 GetLatestCommitSHA() {
@@ -29,7 +27,7 @@ MsgBox, Latest Commit SHA: %latestCommit%
 
 
 ; Read local version from file
-FileRead, localversion, Rversion.txt
+FileRead, localversion, %A_Temp%\Reaper\Rversion.txt
 
 ; Compare local and host versions
 If (localversion = latestCommit) {
@@ -41,10 +39,9 @@ If (localversion = latestCommit) {
     ; Display message box indicating update
 	MsgBox,,,Local Version = %localversion%`rHost Version = %latestCommit%`r`rUpdating locally.
     ; Delete existing Rversion.txt
-	FileDelete, Rversion.txt
+	FileDelete, %A_Temp%\Reaper\Rversion.txt
     ; Append latest commit to Rversion.txt
-	FileAppend, %latestCommit%, Rversion.txt
-	fileappend, %localversion%`r, RversionHistory.txt
+	FileAppend, %latestCommit%, %A_Temp%\Reaper\Rversion.txt
 	goto, Outdated
 }
 
@@ -57,8 +54,5 @@ Outdated:
 
 htmlName := A_DD . A_MM . A_YYYY
 modsetHtmlText := htmlModset()
-FileAppend, %modsetHtmlText%, modsets\%localversion%.html
+FileAppend, %modsetHtmlText%, %A_Temp%\Reaper\%localversion%.html
 ;once done silently check for update again.
-
-
-f3::exitapp

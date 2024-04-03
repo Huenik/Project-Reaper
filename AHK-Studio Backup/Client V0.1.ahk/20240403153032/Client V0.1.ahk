@@ -57,7 +57,7 @@ Outdated:
 
 htmlName := A_DD . A_MM . A_YYYY
 modsetHtmlText := htmlModset()
-FileAppend, %modsetHtmlText%, modsets\%localversion%.html
+FileAppend, %modsetHtmlText%, %localversion%.html
 ;once done silently check for update again.
 
 
