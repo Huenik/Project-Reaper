@@ -60,7 +60,7 @@ MsgBox, 4,, Would you like to add this to your ARMA3 presets? (press Yes or No)
 IfMsgBox Yes
 	goto,modlist_preset_injector
 else
-	goto, updated
+	exitapp
 
 modlist_preset_injector:
 

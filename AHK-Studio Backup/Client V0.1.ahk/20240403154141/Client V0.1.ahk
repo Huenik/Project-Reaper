@@ -60,7 +60,7 @@ MsgBox, 4,, Would you like to add this to your ARMA3 presets? (press Yes or No)
 IfMsgBox Yes
 	goto,modlist_preset_injector
 else
-	goto, updated
+	exitapp
 
 modlist_preset_injector:
 
@@ -102,7 +102,7 @@ if (matches.Length()) {
 	}
 } else {
 	MsgBox Unable to create preset2 file, error001
-	goto, updated
+	
 }
 FileAppend,%line5%`n,file.txt
 FileAppend,%line6%`n,file.txt
@@ -113,7 +113,6 @@ FileMove, file.txt, %dest%
 MsgBox,,All Done, Check your ARMA3 launcher for the preset you named %fileName%.
 ;~~~
 
-updated:
 ; Delete existing Rversion.txt
 FileDelete, Rversion.txt
     ; Append latest commit to Rversion.txt
@@ -129,7 +128,6 @@ f3::exitapp
 
 /*
 Errors:
-001	Preset2 file unable to be created due to no matches found in variable modsetHtmlText. said html text comes from 
-	https://github.com/Huenik/Project-Reaper/blob/main/modset.html. If no mods are in said html modset, then no matches possible.
+001	Preset2 file unable to be created due to no matches found in variable modsetHtmlText. said html text comes from https://github.com/Huenik/Project-Reaper/blob/main/modset.html. If no mods are in said html modset, then no matches possible.
 
 */
