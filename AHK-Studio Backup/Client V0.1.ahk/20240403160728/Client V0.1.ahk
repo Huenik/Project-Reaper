@@ -25,6 +25,8 @@ htmlModset() {
 
 ; assign that to this var
 latestCommit := GetLatestCommitSHA()
+MsgBox, Latest Commit SHA: %latestCommit%
+
 
 ; Read local version from file
 FileRead, localversion, Rversion.txt
@@ -54,7 +56,7 @@ FileAppend, %modsetHtmlText%, modsets\%localversion%.html
 ;once done silently check for update again.
 
 ;add to arma Presets offer
-MsgBox, 4,Add to Presets?, Would you like to add the new version to your ARMA3 presets?
+MsgBox, 4,, Would you like to add this to your ARMA3 presets? (press Yes or No)
 IfMsgBox Yes
 	goto,modlist_preset_injector
 else
@@ -63,7 +65,7 @@ else
 modlist_preset_injector:
 
 filename = %A_DD%/%A_MM% %latestCommit%
-MsgBox,,Preset Naming,Your preset will be called %filename%
+MsgBox, your preset will be called %filename%
 
 pattern := "<a href=""(https:\/\/steamcommunity\.com\/sharedfiles\/filedetails\/\?id=\d+)"""
 matches := [] ; Initialize an empty array to store matches
@@ -87,33 +89,29 @@ line5 =  </published-ids>
 line6 =  <dlcs-appids />
 line7 =</addons-presets>
 
-; these next 5 lines add the header to the preset2 file
 FileDelete,file.txt
 FileAppend,%line1%`n,file.txt
 FileAppend,%line2%`n,file.txt
 FileAppend,%line3%`n,file.txt
 FileAppend,%line4%`n,file.txt
 
-; these find the matches, or exits if it fails.
 if (matches.Length()) {
     ; Display all matches
 	for index, value in matches {
 		FileAppend,    %value%`n  ,file.txt
-		MsgBox,,Success,Preset made successfully.,2
 	}
 } else {
-	MsgBox,,Error001," Unable to create preset2 file, error001",5
+	MsgBox Unable to create preset2 file, error001
 	goto, updated
 }
 FileAppend,%line5%`n,file.txt
 FileAppend,%line6%`n,file.txt
 FileAppend,%line7%,file.txt
-
 dest := "C:\Users\" . A_UserName . "\AppData\Local\Arma 3 Launcher\Presets\" . fileName . ".preset2"
 FileMove, file.txt, %dest%
-; this changes the file extension to preset2 and places it in the default arma3 presets folder
 
 MsgBox,,All Done, Check your ARMA3 launcher for the preset you named %fileName%.
+;~~~
 
 updated:
 ; Delete existing Rversion.txt
@@ -121,7 +119,6 @@ FileDelete, Rversion.txt
     ; Append latest commit to Rversion.txt
 FileAppend, %latestCommit%, Rversion.txt
 fileappend, %localversion%`r, RversionHistory.txt
-MsgBox,,Updated,Updated from %localversion%,`r To the newer %latestCommit%.
 ; end of updating locally
 
 

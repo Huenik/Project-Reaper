@@ -54,7 +54,7 @@ FileAppend, %modsetHtmlText%, modsets\%localversion%.html
 ;once done silently check for update again.
 
 ;add to arma Presets offer
-MsgBox, 4,Add to Presets?, Would you like to add the new version to your ARMA3 presets?
+MsgBox, 4,Add to Presets?, Would you like to add the new version to your ARMA3 presets? (press Yes or No)
 IfMsgBox Yes
 	goto,modlist_preset_injector
 else

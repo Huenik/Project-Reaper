@@ -54,7 +54,7 @@ FileAppend, %modsetHtmlText%, modsets\%localversion%.html
 ;once done silently check for update again.
 
 ;add to arma Presets offer
-MsgBox, 4,Add to Presets?, Would you like to add the new version to your ARMA3 presets?
+MsgBox, 4,Add to Presets?, Would you like to add the new version to your ARMA3 presets? (press Yes or No)
 IfMsgBox Yes
 	goto,modlist_preset_injector
 else
@@ -94,7 +94,6 @@ FileAppend,%line2%`n,file.txt
 FileAppend,%line3%`n,file.txt
 FileAppend,%line4%`n,file.txt
 
-; these find the matches, or exits if it fails.
 if (matches.Length()) {
     ; Display all matches
 	for index, value in matches {
@@ -109,7 +108,7 @@ FileAppend,%line5%`n,file.txt
 FileAppend,%line6%`n,file.txt
 FileAppend,%line7%,file.txt
 
-dest := "C:\Users\" . A_UserName . "\AppData\Local\Arma 3 Launcher\Presets\" . fileName . ".preset2"
+dest := A_AppData . "\Local\Arma 3 Launcher\Presets\" . fileName . ".preset2"
 FileMove, file.txt, %dest%
 ; this changes the file extension to preset2 and places it in the default arma3 presets folder
 
