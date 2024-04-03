@@ -1,6 +1,5 @@
 ; add run at startup
 ; add scheduled task for every saturday 12:00
-; get it to actually download the mods and load the html
 
 
 SetWorkingDir, %A_Temp%\Reaper\
