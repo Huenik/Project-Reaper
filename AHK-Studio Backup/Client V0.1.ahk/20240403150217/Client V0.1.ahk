@@ -12,7 +12,9 @@ GetLatestCommitSHA() {
 	commitSHA := SubStr(html, startIndex, endIndex - startIndex)
 	return commitSHA
 }
-htmlModset() {
+
+htmlModset()
+{
 	oHTTP := ComObjCreate("WinHttp.WinHttpRequest.5.1")
 	url := "https://raw.githubusercontent.com/Huenik/Project-Reaper/main/modset.html"
 	oHTTP.Open("GET", url)
@@ -52,8 +54,7 @@ Outdated:
 ;download update
 ; gather html modset
 
-htmlName := A_DD . A_MM . A_YYYY
+
 modsetHtmlText := htmlModset()
 MsgBox, %modsetHtmlText%
-FileAppend, %modsetHtmlText%, %A_Temp%\Reaper\%localversion%.html
 ;once done silently check for update again.

@@ -12,15 +12,6 @@ GetLatestCommitSHA() {
 	commitSHA := SubStr(html, startIndex, endIndex - startIndex)
 	return commitSHA
 }
-htmlModset() {
-	oHTTP := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-	url := "https://raw.githubusercontent.com/Huenik/Project-Reaper/main/modset.html"
-	oHTTP.Open("GET", url)
-	oHTTP.Send()
-	html := oHTTP.ResponseText
-	return html
-}
-
 ; assign that to this var
 latestCommit := GetLatestCommitSHA()
 MsgBox, Latest Commit SHA: %latestCommit%
@@ -50,10 +41,13 @@ exitapp
 
 Outdated:
 ;download update
-; gather html modset
-
-htmlName := A_DD . A_MM . A_YYYY
-modsetHtmlText := htmlModset()
-MsgBox, %modsetHtmlText%
-FileAppend, %modsetHtmlText%, %A_Temp%\Reaper\%localversion%.html
+	; gather html modset
+	htmlModset(){
+oHTTP := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+url := "https://github.com/Huenik/Project-Reaper/commit/main"
+oHTTP.Open("GET", url)
+oHTTP.Send()
+html := oHTTP.ResponseText
+return html
+}
 ;once done silently check for update again.

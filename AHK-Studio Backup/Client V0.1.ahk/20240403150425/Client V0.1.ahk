@@ -55,5 +55,5 @@ Outdated:
 htmlName := A_DD . A_MM . A_YYYY
 modsetHtmlText := htmlModset()
 MsgBox, %modsetHtmlText%
-FileAppend, %modsetHtmlText%, %A_Temp%\Reaper\%localversion%.html
+FileAppend, %htmlName%
 ;once done silently check for update again.
