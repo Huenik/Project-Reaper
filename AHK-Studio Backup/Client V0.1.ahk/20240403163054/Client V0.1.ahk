@@ -62,7 +62,7 @@ else
 
 modlist_preset_injector:
 
-filename = %A_DD%_%A_MM%_%latestCommit%
+filename = %A_DD%/%A_MM% %latestCommit%
 MsgBox,,Preset Naming,Your preset will be called %filename%
 
 pattern := "<a href=""(https:\/\/steamcommunity\.com\/sharedfiles\/filedetails\/\?id=\d+)"""
