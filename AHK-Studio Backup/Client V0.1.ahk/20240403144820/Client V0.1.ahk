@@ -23,7 +23,7 @@ FileRead, localversion, %A_Temp%\Reaper\Rversion.txt
 ; Compare local and host versions
 If (localversion = latestCommit) {
 	currentVersionStatus := 1
-	MsgBox,,,Local Version = %localversion%`rHost Version = %latestCommit%`r`rLocal Version matches Host.`rExiting
+	MsgBox, Local Version matches Host.`rExiting
 } Else {
 	currentVersionStatus := 0
     ; Display message box indicating update

@@ -23,13 +23,12 @@ FileRead, localversion, %A_Temp%\Reaper\Rversion.txt
 ; Compare local and host versions
 If (localversion = latestCommit) {
 	currentVersionStatus := 1
-	MsgBox,,,Local Version = %localversion%`rHost Version = %latestCommit%`r`rLocal Version matches Host.`rExiting
 } Else {
 	currentVersionStatus := 0
-    ; Display message box indicating update
+	; Update local version with latest commit
 	MsgBox,,,Local Version = %localversion%`rHost Version = %latestCommit%`r`rUpdating locally.
-    ; Delete existing Rversion.txt
+	; Delete existing Rversion.txt
 	FileDelete, %A_Temp%\Reaper\Rversion.txt
-    ; Append latest commit to Rversion.txt
-	FileAppend, %latestCommit%, %A_Temp%\Reaper\Rversion.txt
-}
+	; Append latest commit to Rversion.txt
+	FileAppend,%latestCommit%, %A_Temp%\Reaper\Rversion.txt
+	}
