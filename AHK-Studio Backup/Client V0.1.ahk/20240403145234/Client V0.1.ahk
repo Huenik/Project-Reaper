@@ -40,6 +40,5 @@ Uptodate:
 exitapp
 
 Outdated:
-;download update
-
+exitapp
 ;once done silently check for update again.

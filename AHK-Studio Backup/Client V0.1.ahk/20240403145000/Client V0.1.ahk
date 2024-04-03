@@ -24,7 +24,6 @@ FileRead, localversion, %A_Temp%\Reaper\Rversion.txt
 If (localversion = latestCommit) {
 	currentVersionStatus := 1
 	MsgBox,,,Local Version = %localversion%`rHost Version = %latestCommit%`r`rLocal Version matches Host.`rExiting
-	goto, Uptodate
 } Else {
 	currentVersionStatus := 0
     ; Display message box indicating update
@@ -33,13 +32,4 @@ If (localversion = latestCommit) {
 	FileDelete, %A_Temp%\Reaper\Rversion.txt
     ; Append latest commit to Rversion.txt
 	FileAppend, %latestCommit%, %A_Temp%\Reaper\Rversion.txt
-	goto, Outdated
 }
-
-Uptodate:
-exitapp
-
-Outdated:
-;download update
-
-;once done silently check for update again.

@@ -36,10 +36,7 @@ If (localversion = latestCommit) {
 	goto, Outdated
 }
 
-Uptodate:
+Uptodate::
 exitapp
 
-Outdated:
-;download update
-
-;once done silently check for update again.
+Outdated::

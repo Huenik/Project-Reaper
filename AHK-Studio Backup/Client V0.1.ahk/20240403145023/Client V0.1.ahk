@@ -35,11 +35,6 @@ If (localversion = latestCommit) {
 	FileAppend, %latestCommit%, %A_Temp%\Reaper\Rversion.txt
 	goto, Outdated
 }
-
-Uptodate:
+Uptodate::
 exitapp
-
-Outdated:
-;download update
-
-;once done silently check for update again.
+Outdated::
